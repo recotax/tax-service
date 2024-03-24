@@ -1,5 +1,6 @@
-import ExpressHttpServer from './infra/http/ExpressHttpServer';
-import { logger } from './utils/log-utils';
+import ExpressHttpServer from './infra/http/ExpressHttpServer.js';
+import { logger } from './utils/log-utils.js';
+import * as dotenv from 'dotenv';
 
 dotenv.config();
 const httpServer = new ExpressHttpServer();
@@ -8,7 +9,7 @@ logger.log({
   message: 'Application started succesfully',
 });
 
-httpServer.app.use((req, res) => {
+httpServer.app.use((req, res, next) => {
   logger.log({
     level: 'info',
     message: `${req.method} - ${req.path}`,
