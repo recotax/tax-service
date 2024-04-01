@@ -1,5 +1,5 @@
 import cors from "cors";
-import express, { Application } from "express";
+import express, { Application, Request, Response } from "express";
 import { Code } from "./enum/code.enum";
 import { HttpResponse } from "./domain/response";
 import { Status } from "./enum/status.enum";
@@ -29,12 +29,12 @@ export class App {
 
   routes(): void {
     this.app.use("/test", testRoutes);
-    this.app.get("/health", (_, res) =>
+    this.app.get("/health", (_, res: Response) =>
       res
         .status(Code.OK)
         .send(new HttpResponse(Code.OK, Status.OK, "Server is running"))
     );
-    this.app.all("*", (_, res) =>
+    this.app.all("*", (_, res: Response) =>
       res
         .status(Code.NOT_FOUND)
         .send(
