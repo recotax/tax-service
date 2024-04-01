@@ -5,10 +5,10 @@ export class Test {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
+  @Column("text", { nullable: true })
   column1!: string;
 
-  @Column()
+  @Column("text", { nullable: true })
   column2!: string;
 
   @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
