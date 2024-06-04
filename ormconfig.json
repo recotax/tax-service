@@ -1,15 +1,16 @@
 {
   "type": "mysql2",
-  "host": "${DB_HOST}",
-  "port": "${DB_PORT}",
-  "username": "${DB_USER}",
-  "password": "${DB_PASSWORD}",
-  "database": "${DB_NAME}",
+  "host": "localhost",
+  "port": "3306",
+  "username": "root",
+  "password": "root",
+  "database": "testing",
   "synchronize": true,
   "logging": false,
   "entities": ["src/models/*.ts"],
   "migrations": ["src/migrations"],
   "cli": {
-    "entitiesDir": "src/models"
+    "entitiesDir": "src/models",
+    "migrationsDir": "src/migrations"
   }
 }
