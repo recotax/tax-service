@@ -1,5 +1,5 @@
-import { Company } from "../entities/Company";
-import { CompanyRepository } from "../interfaces/CompanyRepository";
+import { Company } from "@entities/Company";
+import { CompanyRepository } from "@interfaces/CompanyRepository";
 
 export class CompanyUseCase {
   constructor(private readonly companyRepository: CompanyRepository) {}

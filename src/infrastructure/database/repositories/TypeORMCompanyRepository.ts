@@ -1,7 +1,7 @@
 // src/infrastructure/database/repositories/TypeORMCompanyRepository.ts
 import { Repository } from "typeorm";
-import { Company } from "../../../core/entities/Company";
-import { CompanyRepository } from "../../../core/interfaces/CompanyRepository";
+import { Company } from "@entities/Company";
+import { CompanyRepository } from "@interfaces/CompanyRepository";
 
 export class TypeORMCompanyRepository implements CompanyRepository {
   private repository: Repository<Company>;

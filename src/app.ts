@@ -1,6 +1,6 @@
 import express, { Application } from "express";
-import { applyMiddleware } from "./infrastructure/server/middleware";
-import { registerRoutes } from "./infrastructure/server/routes/index";
+import { applyMiddleware } from "@infrastructure/server/middleware";
+import { registerRoutes } from "@infrastructure/server/routes/index";
 
 export class App {
   private readonly app: Application;

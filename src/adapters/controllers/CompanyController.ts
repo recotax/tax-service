@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CompanyUseCase } from "../../core/usecases/CompanyUseCase";
+import { CompanyUseCase } from "@core/usecases/CompanyUseCase";
 
 export class CompanyController {
   constructor(private readonly companyUseCase: CompanyUseCase) {}

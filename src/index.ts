@@ -1,6 +1,6 @@
 import { App } from "./app";
 import dotenv from "dotenv";
-import { initializeDB } from "./infrastructure/database/dbconnection";
+import { initializeDB } from "@infrastructure/database/dbconnection";
 
 const app = new App();
 dotenv.config();
