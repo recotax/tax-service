@@ -130,20 +130,17 @@ export class Sales1719439324357 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    // Drop the foreign key first before dropping the table
     const salesTable = await queryRunner.getTable("sales");
-    // If the sales table is found, proceed to drop the foreign key and then the table
+
     if (salesTable) {
       const foreignKey = salesTable.foreignKeys.find(
         (fk) => fk.columnNames.indexOf("company_id") !== -1
       );
 
-      // Drop the foreign key if it exists
       if (foreignKey) {
         await queryRunner.dropForeignKey("sales", foreignKey);
       }
 
-      // Drop the sales table
       await queryRunner.dropTable("sales");
     }
   }

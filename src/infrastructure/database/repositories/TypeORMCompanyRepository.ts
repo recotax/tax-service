@@ -1,9 +1,8 @@
-// src/infrastructure/database/repositories/TypeORMCompanyRepository.ts
 import { Repository } from "typeorm";
 import { Company } from "@entities/Company";
-import { CompanyRepository } from "@interfaces/CompanyRepository";
+import { BaseRepository } from "@interfaces/BaseRepository";
 
-export class TypeORMCompanyRepository implements CompanyRepository {
+export class TypeORMCompanyRepository implements BaseRepository<Company> {
   private repository: Repository<Company>;
 
   constructor(private readonly dataSource: any) {
@@ -12,21 +11,19 @@ export class TypeORMCompanyRepository implements CompanyRepository {
 
   async findAll(): Promise<Company[]> {
     const result = await this.repository.find();
-    console.log(result);
     return result;
   }
 
-  async findById(id: any): Promise<Company | undefined> {
+  async findById(id: any): Promise<Company | null> {
     const company = await this.repository.findOne(id);
-    return company || undefined;
+    return company || null;
   }
 
-  async findByCNPJ(cnpj: string): Promise<Company | undefined> {
-    const company = await this.repository.findOne({ where: { CNPJ: cnpj } });
-    return company || undefined;
+  async create(company: Company): Promise<Company> {
+    return await this.repository.save(company);
   }
 
-  async save(company: Company): Promise<Company> {
+  async update(company: Company): Promise<Company> {
     return await this.repository.save(company);
   }
 

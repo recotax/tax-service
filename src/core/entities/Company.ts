@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
+import { Sales } from "./Sales";
+import { Purchases } from "./Purchases";
 
 @Entity("companies")
 export class Company {
@@ -23,4 +25,10 @@ export class Company {
 
   @Column({ type: "timestamp", nullable: true })
   deletedAt!: Date;
+
+  @OneToMany(() => Sales, (sales) => sales.company)
+  sales!: Sales[];
+
+  @OneToMany(() => Purchases, (purchases) => purchases.company)
+  purchases!: Purchases[];
 }
