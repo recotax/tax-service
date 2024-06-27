@@ -5,11 +5,11 @@ import {
   TableForeignKey,
 } from "typeorm";
 
-export class Sales1719439324357 implements MigrationInterface {
+export class Purchases1719454238673 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: "sales",
+        name: "purchases",
         columns: [
           {
             name: "id",
@@ -73,6 +73,18 @@ export class Sales1719439324357 implements MigrationInterface {
             scale: 2,
           },
           {
+            name: "unit_icms",
+            type: "decimal",
+            precision: 10,
+            scale: 2,
+          },
+          {
+            name: "unit_icmsst",
+            type: "decimal",
+            precision: 10,
+            scale: 2,
+          },
+          {
             name: "orig",
             type: "int",
           },
@@ -99,6 +111,30 @@ export class Sales1719439324357 implements MigrationInterface {
             scale: 2,
           },
           {
+            name: "pmvast",
+            type: "decimal",
+            precision: 10,
+            scale: 2,
+          },
+          {
+            name: "vbcst",
+            type: "decimal",
+            precision: 10,
+            scale: 2,
+          },
+          {
+            name: "p_icmsst",
+            type: "decimal",
+            precision: 10,
+            scale: 2,
+          },
+          {
+            name: "v_icmsst",
+            type: "decimal",
+            precision: 10,
+            scale: 2,
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "CURRENT_TIMESTAMP",
@@ -119,7 +155,7 @@ export class Sales1719439324357 implements MigrationInterface {
     );
 
     await queryRunner.createForeignKey(
-      "sales",
+      "purchases",
       new TableForeignKey({
         columnNames: ["company_id"],
         referencedColumnNames: ["id"],
@@ -131,20 +167,20 @@ export class Sales1719439324357 implements MigrationInterface {
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     // Drop the foreign key first before dropping the table
-    const salesTable = await queryRunner.getTable("sales");
-    // If the sales table is found, proceed to drop the foreign key and then the table
-    if (salesTable) {
-      const foreignKey = salesTable.foreignKeys.find(
+    const purchsesTable = await queryRunner.getTable("purchses");
+    // If the purchases table is found, proceed to drop the foreign key and then the table
+    if (purchsesTable) {
+      const foreignKey = purchsesTable.foreignKeys.find(
         (fk) => fk.columnNames.indexOf("company_id") !== -1
       );
 
       // Drop the foreign key if it exists
       if (foreignKey) {
-        await queryRunner.dropForeignKey("sales", foreignKey);
+        await queryRunner.dropForeignKey("purchases", foreignKey);
       }
 
-      // Drop the sales table
-      await queryRunner.dropTable("sales");
+      // Drop the purchases table
+      await queryRunner.dropTable("purchases");
     }
   }
 }
