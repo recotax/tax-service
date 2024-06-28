@@ -2,7 +2,7 @@ import { Repository } from "typeorm";
 import { Sales } from "@entities/Sales";
 import { BaseRepository } from "@interfaces/BaseRepository";
 
-export class TypeORMSalesRepository implements BaseRepository<Sales> {
+export class SalesRepository implements BaseRepository<Sales> {
   private repository: Repository<Sales>;
 
   constructor(private readonly dataSource: any) {
